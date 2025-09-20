@@ -1,39 +1,144 @@
-<!-- Comment added -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Warren Portfolio</title>
-
-  <!-- Connect CSS -->
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Warren — Portfolio</title>
+  <meta name="description" content="Warren — builds fast, accessible websites. HTML, JavaScript, CSS projects and contact." />
+  <link rel="icon" href="favicon.svg" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- Skip link for keyboard users -->
+  <a class="skip-link" href="#main">Skip to content</a>
+
   <div class="wrap">
-    <header>
-      <div class="logo">Warren</div>
-      <nav>
-        <a href="index.html">HTML</a>
-        <a href="js.html">JavaScript</a>
-        <a href="css.html">CSS</a>
+    <header class="site-header" role="banner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">Warren</div>
+        <div class="sr-only">Warren — frontend dev</div>
+      </div>
+
+      <div class="controls">
+        <!-- Theme toggle -->
+        <label class="switch" title="Toggle dark mode">
+          <input type="checkbox" id="themeToggle" aria-label="Toggle dark mode" />
+          <span class="slider" aria-hidden="true"></span>
+        </label>
+
+        <!-- Mobile menu button -->
+        <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle navigation">☰</button>
+      </div>
+
+      <nav id="main-nav" class="nav-links" role="navigation" aria-label="Primary navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="html.html">HTML</a></li>
+          <li><a href="js.html">JavaScript</a></li>
+          <li><a href="css.html">CSS</a></li>
+        </ul>
       </nav>
     </header>
 
-    <main>
-      <section class="hero">
-        <h1>Hi, I’m <span class="highlight">Your Name</span></h1>
-        <p>I build fast, accessible websites. This page focuses on HTML structure & projects.</p>
-        <button id="clickMeBtn">Click Me</button>
+    <main id="main" role="main">
+      <section class="hero" aria-labelledby="hero-heading">
+        <h1 id="hero-heading">Hi, I’m <span class="highlight">Warren</span></h1>
+        <p class="lead">I build fast, accessible websites. This page focuses on HTML structure & projects.</p>
+
+        <div class="button-group">
+          <button id="clickMeBtn" class="btn">Click Me</button>
+          <button id="changeBgBtn" class="btn secondary">Toggle Accent Background</button>
+          <a class="btn ghost" href="Warren-Resume.pdf" download>Download Resume</a>
+          <button id="contactOpen" class="btn outline">Contact</button>
+        </div>
+      </section>
+
+      <section class="projects" aria-labelledby="projects-heading">
+        <h2 id="projects-heading">Projects</h2>
+        <p class="muted">A few highlights — click into any project card to learn more.</p>
+
+        <div class="grid">
+          <!-- project card (copy & replace) -->
+          <article class="card" tabindex="0">
+            <img src="placeholder-project-1.jpg" alt="Screenshot of Project One" loading="lazy" />
+            <div class="card-body">
+              <h3>Project One</h3>
+              <p class="muted">HTML, CSS — accessible layout and responsive components.</p>
+              <div class="card-actions">
+                <a class="link" href="#">Live</a>
+                <a class="link" href="#">Code</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card" tabindex="0">
+            <img src="placeholder-project-2.jpg" alt="Screenshot of Project Two" loading="lazy" />
+            <div class="card-body">
+              <h3>Project Two</h3>
+              <p class="muted">JavaScript — UI interactions and progressive enhancement.</p>
+              <div class="card-actions">
+                <a class="link" href="#">Live</a>
+                <a class="link" href="#">Code</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card" tabindex="0">
+            <img src="placeholder-project-3.jpg" alt="Screenshot of Project Three" loading="lazy" />
+            <div class="card-body">
+              <h3>Project Three</h3>
+              <p class="muted">CSS — animations, utilities, and theming.</p>
+              <div class="card-actions">
+                <a class="link" href="#">Live</a>
+                <a class="link" href="#">Code</a>
+              </div>
+            </div>
+          </article>
+        </div>
       </section>
     </main>
 
-    <footer>
-      © <span id="year"></span> Your Name
+    <footer class="site-footer" role="contentinfo">
+      <div class="footer-inner">
+        <div>
+          © <span id="year"></span> Warren — <a href="mailto:hello@example.com" class="link">hello@example.com</a>
+        </div>
+        <div class="socials" aria-hidden="false">
+          <a class="link" href="#" aria-label="Twitter">Twitter</a>
+          <a class="link" href="#" aria-label="GitHub">GitHub</a>
+          <a class="link" href="#" aria-label="LinkedIn">LinkedIn</a>
+        </div>
+      </div>
     </footer>
   </div>
 
-  <!-- Connect JS -->
-  <script src="script.js"></script>
+  <!-- Contact modal -->
+  <div class="modal" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="contactTitle" hidden>
+    <div class="modal-panel" role="document">
+      <button class="modal-close" id="contactClose" aria-label="Close contact form">×</button>
+      <h3 id="contactTitle">Contact me</h3>
+      <form id="contactForm">
+        <label>
+          Your name
+          <input type="text" name="name" required />
+        </label>
+        <label>
+          Email
+          <input type="email" name="email" required />
+        </label>
+        <label>
+          Message
+          <textarea name="message" rows="5" required></textarea>
+        </label>
+        <div class="modal-actions">
+          <button type="submit" class="btn">Send</button>
+          <button type="button" class="btn outline" id="contactCancel">Cancel</button>
+        </div>
+      </form>
+      <p class="muted small">Or email: <a class="link" href="mailto:hello@example.com">hello@example.com</a></p>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
 </body>
 </html>
